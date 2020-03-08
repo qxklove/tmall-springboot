@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.qxk.tmall</groupId>
-	<artifactId>tmall_springboot</artifactId>
+	<groupId>com.qxk.mall</groupId>
+	<artifactId>mall_springboot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>tmall_springboot</name>
-	<description>tmall_springboot</description>
+	<name>mall_springboot</name>
+	<description>mall_springboot</description>
 	<packaging>war</packaging>
 	<parent>
 		<groupId>org.springframework.boot</groupId>

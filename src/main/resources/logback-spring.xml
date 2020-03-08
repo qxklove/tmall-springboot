@@ -25,7 +25,7 @@
 <!--    &lt;!&ndash; logback为java中的包 &ndash;&gt;-->
 <!--    <logger name="com.qxk.tmall.web"/>-->
 <!--    &lt;!&ndash;logback.LogbackDemo：类的全路径 &nda sh;&gt;-->
-    <logger name="com.qxk.tmall.web" level="info" additivity="false">
+    <logger name="com.qxk.mall.web" level="info" additivity="false">
         <appender-ref ref="console"/>
         <appender-ref ref="file" />
     </logger>
