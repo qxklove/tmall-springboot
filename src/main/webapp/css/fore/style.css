@@ -236,13 +236,6 @@ div.homepageDiv{
 	position:relative;
 }
 
-
-img.catear {
-	position: absolute;
-	height: 15px;
-	display: none;
-}
-
 img.logo {
 	position: absolute;
 	left: 0px;
@@ -396,14 +389,6 @@ div.coptyrightMiddle{
 	 position:relative;
 }
 
-img.cateye {
-	margin-left: 20px;
-	display:block;
-	position:absolute;
-	top:-33px;
-	left:-15px;
-}
-
 div.copyright span.slash {
 	color: white;
 }
@@ -420,10 +405,6 @@ div.license div.copyRightYear {
 
 div.license span {
 	color: #A4A4A4;
-}
-
-div.simpleLogo {
-	padding: 32px 0px;
 }
 
 img.loginBackgroundImg {
@@ -629,7 +610,7 @@ div.productUnit a.productLink:hover {
 	color: #C40000;
 }
 
-div.productUnit a.tmallLink {
+div.productUnit a.mallLink {
 	margin: 10px 0px;
 	color: #999999;
 	/*font: 0.8em;*/
@@ -637,7 +618,7 @@ div.productUnit a.tmallLink {
 	text-decoration: underline;
 }
 
-div.productUnit a.tmallLink:hover {
+div.productUnit a.mallLink:hover {
 	text-decoration: underline;
 	color: #C40000;
 }
@@ -652,10 +633,6 @@ div.productUnit span.monthDeal, div.productUnit span.productReview {
 	height: 30px;
 	padding-top: 5px;
 	padding-left: 5px;
-}
-
-div.productUnit span.wangwang {
-	padding-left: 3px;
 }
 
 div.productUnit span.productDealNumber {
@@ -677,13 +654,6 @@ div.productUnit div.productInfo {
 	border-top-width: 1px;
 	border-top-style: solid;
 	border-top-color: #EEEEEE;
-}
-
-img.simpleLogo {
-	position: absolute;
-	left: 10px;
-	top: 50px;
-	width: 140px;
 }
 
 div.simpleSearchDiv {
@@ -1169,10 +1139,6 @@ table.addressTable td textarea {
 	width: 400px;
 }
 
-img.tmallbuy {
-	width: 15px;
-}
-
 a.marketLink {
 	color: black;
 	font-size: 12px;
@@ -1186,20 +1152,6 @@ a.marketLink:hover {
 	text-decoration: underline;
 	font-family: ����;
 	font-weight: normal;
-}
-
-span.wangwangGif {
-	display: inline-block;
-	width: 25px;
-	height: 25px;
-	background-image: url(../../img/site/wangwang.gif);
-	background-repeat: no-repeat;
-	background-color: transparent;
-	background-attachment: scroll;
-	background-position: -83px -0px;
-	position: relative;
-	top: 8px;
-	left: 2px;
 }
 
 table.productListTable {
@@ -1689,20 +1641,6 @@ table.orderListItemTable td {
 	padding: 8px 10px;
 }
 
-div.orderItemWangWangGif {
-	display: inline-block;
-	width: 67px;
-	height: 22px;
-	background-image: url(../../img/site/wangwang.gif);
-	background-repeat: no-repeat;
-	background-color: transparent;
-	background-attachment: scroll;
-	background-position: -0px -0px;
-	position: relative;
-	top: 0px;
-	left: 2px;
-}
-
 span.orderListItemDelete {
 	display: inline-block;
 	margin: 0px 10px;
@@ -1898,20 +1836,6 @@ table.confirmPayOrderDetailTable td {
 
 div.confirmPayOrderDetailDiv {
 	margin: 40px;
-}
-
-span.confirmPayOrderDetailWangWangGif {
-	display: inline-block;
-	width: 67px;
-	height: 22px;
-	background-image: url(../../img/site/wangwang.gif);
-	background-repeat: no-repeat;
-	background-color: transparent;
-	background-attachment: scroll;
-	background-position: -0px -0px;
-	position: relative;
-	top: 0px;
-	left: 2px;
 }
 
 div.confirmPayButtonDiv {

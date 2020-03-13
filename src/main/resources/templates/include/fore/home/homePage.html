@@ -37,13 +37,6 @@
                 var top = $(this).position().top;
                 var width = $(this).css("width");
                 var destLeft = parseInt(left) + parseInt(width)/2;
-                $("img#catear").css("left",destLeft);
-                $("img#catear").css("top",top-20);
-                $("img#catear").fadeIn(500);
-
-            });
-            $("div.rightMenu span").mouseleave(function(){
-                $("img#catear").hide();
             });
 
             var left = $("div#carousel-of-product").offset().left;
@@ -98,7 +91,7 @@
     </script>
 
 
-    <title>模仿天猫官网</title>
+    <title>商城官网</title>
     <div class="homepageDiv">
         <div th:replace="include/fore/home/categoryAndcarousel::html" ></div>
         <div th:replace="include/fore/home/homepageCategoryProducts::html" ></div>

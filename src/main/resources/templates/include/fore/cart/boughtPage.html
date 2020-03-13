@@ -98,18 +98,12 @@
 		<div class="orderListItem">
 				<table v-for="o in orders" class="orderListItemTable" :orderStatus="o.status" :oid="o.id">
 					<tr class="orderListItemFirstTR">
-						<td colspan="2">
+						<td colspan="4">
 						<b>{{o.createDate | formatDateFilter('YYYY-MM-DD') }}</b>
 						<span>订单号: {{o.orderCode}}
 						</span>
 						</td>
-						<td  colspan="2"><img width="13px" src="img/site/orderItemTmall.png">天猫商场</td>
-						<td colspan="1">
-							<a class="wangwanglink" href="#nowhere">
-								<div class="orderItemWangWangGif"></div>
-							</a>
-
-						</td>
+						<td colspan="1"></td>
 						<td class="orderItemDeleteTD">
 							<a class="deleteOrderLink" :oid="o.id" href="#nowhere">
 								<span  class="orderListItemDelete glyphicon glyphicon-trash"></span>

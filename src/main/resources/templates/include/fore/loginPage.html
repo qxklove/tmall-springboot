@@ -50,9 +50,6 @@
 
 
     <div id="loginDiv" style="position: relative">
-        <div class="simpleLogo">
-            <a th:href="${application.contextPath}"><img src="img/site/simpleLogo.png"></a>
-        </div>
         <img id="loginBackgroundImg" class="loginBackgroundImg" src="img/site/loginBackground.png">
         <div id="loginSmallDiv" class="loginSmallDiv">
             <div class="loginErrorMessageDiv">
@@ -62,7 +59,10 @@
                 </div>
             </div>
 
-            <div class="login_acount_text">账户登录</div>
+            <div class="login_acount_text">
+                <span>账户登录</span>
+                <span class="pull-right"><a th:href="${application.contextPath}">返回首页</a></span>
+            </div>
             <div class="loginInput " >
 					<span class="loginInputIcon ">
 						<span class=" glyphicon glyphicon-user"></span>
@@ -76,7 +76,6 @@
 					</span>
                 <input v-model="user.password" type="password" placeholder="密码" type="text">
             </div>
-            <span class="text-danger">不要输入真实的天猫账号密码</span><br><br>
             <div>
                 <a class="notImplementLink" href="#nowhere">忘记登录密码</a>
                 <a href="register" class="pull-right">免费注册</a>

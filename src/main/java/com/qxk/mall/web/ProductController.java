@@ -46,8 +46,6 @@ public class ProductController {
         return bean;
     }
 
-
-
     @DeleteMapping("/products/{id}")
     public String delete(@PathVariable("id") int id, HttpServletRequest request)  throws Exception {
         productService.delete(id);

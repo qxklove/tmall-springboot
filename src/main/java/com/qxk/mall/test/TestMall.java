@@ -19,7 +19,7 @@ public class TestMall {
         }
 
         try (
-                Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/tmall_springboot?useUnicode=true&characterEncoding=utf8",
+                Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/tmall?useUnicode=true&characterEncoding=utf8",
                         "root", "admin");
                 Statement s = c.createStatement();
         )

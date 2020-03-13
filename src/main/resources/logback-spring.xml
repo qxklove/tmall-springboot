@@ -23,7 +23,7 @@
     </appender>
 
 <!--    &lt;!&ndash; logback为java中的包 &ndash;&gt;-->
-<!--    <logger name="com.qxk.tmall.web"/>-->
+<!--    <logger name="com.qxk.mall.web"/>-->
 <!--    &lt;!&ndash;logback.LogbackDemo：类的全路径 &nda sh;&gt;-->
     <logger name="com.qxk.mall.web" level="info" additivity="false">
         <appender-ref ref="console"/>
