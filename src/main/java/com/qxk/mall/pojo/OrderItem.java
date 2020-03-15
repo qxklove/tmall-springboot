@@ -1,75 +1,33 @@
-
-
 package com.qxk.mall.pojo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@Entity
-@Table(name = "order_item")
-@JsonIgnoreProperties({ "handler","hibernateLazyInitializer" })
+@TableName("order_item")
+@Getter
+@Setter
+@ToString
 public class OrderItem {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-	private int id;
+    @TableId(type = IdType.AUTO)
+    private Integer id;
+    private Integer pid;
+    private Integer oid;
+    private Integer uid;
+    private Integer number;
 
-    @ManyToOne
-    @JoinColumn(name="pid")
-
+    @TableField(exist = false)
 	private Product product;
 
-    @ManyToOne
-    @JoinColumn(name="oid")
+    @TableField(exist = false)
 	private Order order;
 
-    @ManyToOne
-    @JoinColumn(name="uid")
-
+    @TableField(exist = false)
 	private User user;
-
-
-	private int number;
-	public int getNumber() {
-		return number;
-	}
-	public void setNumber(int number) {
-		this.number = number;
-	}
-	public Product getProduct() {
-		return product;
-	}
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-	public Order getOrder() {
-		return order;
-	}
-	public void setOrder(Order order) {
-		this.order = order;
-	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-
-
 }
 
 

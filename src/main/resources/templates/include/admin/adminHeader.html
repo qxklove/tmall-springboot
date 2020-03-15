@@ -86,7 +86,7 @@
     //跳转函数
     function jump(page,vue){
 		if('first'== page && !vue.pagination.first)
-			vue.list(0);
+			vue.list(1);
 
 		else if('pre'== page &&	vue.pagination.hasPrevious )
 			vue.list(vue.pagination.number-1);
@@ -95,7 +95,7 @@
 			vue.list(vue.pagination.number+1);
 
 		else if('last'== page && !vue.pagination.last)
-			vue.list(vue.pagination.totalPages-1);
+			vue.list(vue.pagination.totalPages);
     }
     //跳转函数
     function jumpByNumber(start,vue){

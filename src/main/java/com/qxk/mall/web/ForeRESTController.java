@@ -112,7 +112,7 @@ public class ForeRESTController {
         productService.setSaleAndReviewNumber(product);
         productImageService.setFirstProdutImage(product);
 
-
+        product.setCategory(categoryService.getById(product.getCid()));
 
         Map<String,Object> map= new HashMap<>();
         map.put("product", product);
@@ -186,7 +186,7 @@ public class ForeRESTController {
         boolean found = false;
         List<OrderItem> ois = orderItemService.listByUser(user);
         for (OrderItem oi : ois) {
-            if(oi.getProduct().getId()==product.getId()){
+            if (oi.getProduct().getId().equals(product.getId())) {
                 oi.setNumber(oi.getNumber()+num);
                 orderItemService.update(oi);
                 found = true;
@@ -200,6 +200,8 @@ public class ForeRESTController {
             oi.setUser(user);
             oi.setProduct(product);
             oi.setNumber(num);
+            oi.setUid(user.getId());
+            oi.setPid(product.getId());
             orderItemService.add(oi);
             oiid = oi.getId();
         }
@@ -268,12 +270,14 @@ public class ForeRESTController {
     @PostMapping("forecreateOrder")
     public Object createOrder(@RequestBody Order order,HttpSession session){
         User user =(User)  session.getAttribute("user");
-        if(null==user)
+        if (null == user) {
             return Result.fail("未登录");
+        }
         String orderCode = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()) + RandomUtils.nextInt(10000);
         order.setOrderCode(orderCode);
         order.setCreateDate(new Date());
         order.setUser(user);
+        order.setUid(user.getId());
         order.setStatus(OrderService.waitPay);
         List<OrderItem> ois= (List<OrderItem>)  session.getAttribute("ois");
 
@@ -358,8 +362,10 @@ public class ForeRESTController {
         Review review = new Review();
         review.setContent(content);
         review.setProduct(p);
+        review.setPid(p.getId());
         review.setCreateDate(new Date());
         review.setUser(user);
+        review.setUid(user.getId());
         reviewService.add(review);
         return Result.success();
     }

@@ -1,30 +1,24 @@
 
 
 package com.qxk.mall.web;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletRequest;
 
 import com.qxk.mall.pojo.Product;
 import com.qxk.mall.pojo.ProductImage;
 import com.qxk.mall.service.CategoryService;
 import com.qxk.mall.service.ProductImageService;
 import com.qxk.mall.service.ProductService;
+import com.qxk.mall.util.ImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.qxk.mall.util.ImageUtil;
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class ProductImageController {
@@ -57,6 +51,7 @@ public class ProductImageController {
     	ProductImage bean = new ProductImage();
     	Product product = productService.get(pid);
     	bean.setProduct(product);
+        bean.setPid(pid);
     	bean.setType(type);
 
 		productImageService.add(bean);

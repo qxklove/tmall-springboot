@@ -1,66 +1,28 @@
-
-
 package com.qxk.mall.pojo;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@Entity
-@Table(name = "category")
-@JsonIgnoreProperties({ "handler","hibernateLazyInitializer" })
-
+@TableName("category")
+@Getter
+@Setter
+@ToString
 public class Category {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    int id;
+    @TableId(type = IdType.AUTO)
+    private Integer id;
+    private String name;
 
-    String name;
-
-    @Transient
+    @TableField(exist = false)
     List<Product> products;
-    @Transient
+
+    @TableField(exist = false)
     List<List<Product>> productsByRow;
-
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-    public List<List<Product>> getProductsByRow() {
-        return productsByRow;
-    }
-    public void setProductsByRow(List<List<Product>> productsByRow) {
-        this.productsByRow = productsByRow;
-    }
-    @Override
-    public String toString() {
-        return "Category [id=" + id + ", name=" + name + "]";
-    }
 }
 
 

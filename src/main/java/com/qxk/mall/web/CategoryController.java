@@ -22,7 +22,7 @@ public class CategoryController {
 	CategoryService categoryService;
 
 	@GetMapping("/categories")
-	public Page4Navigator<Category> list(@RequestParam(value = "start", defaultValue = "0") int start, @RequestParam(value = "size", defaultValue = "5") int size) throws Exception {
+	public Page4Navigator<Category> list(@RequestParam(value = "start", defaultValue = "1") int start, @RequestParam(value = "size", defaultValue = "5") int size) throws Exception {
 		start = start<0?0:start;
 		Page4Navigator<Category> page =categoryService.list(start, size, 5);  //5表示导航分页最多有5个，像 [1,2,3,4,5] 这样
 		return page;
@@ -38,8 +38,9 @@ public class CategoryController {
 			throws IOException {
 		File imageFolder= new File(request.getServletContext().getRealPath("img/category"));
 		File file = new File(imageFolder,bean.getId()+".jpg");
-		if(!file.getParentFile().exists())
-			file.getParentFile().mkdirs();
+        if (!file.getParentFile().exists()) {
+            file.getParentFile().mkdirs();
+        }
 		image.transferTo(file);
 		BufferedImage img = ImageUtil.change2jpg(file);
 		ImageIO.write(img, "jpg", file);

@@ -1,24 +1,28 @@
-
-
 package com.qxk.mall.util;
+
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
-
+@Getter
+@Setter
+@NoArgsConstructor
 public class Page4Navigator<T> {
     Page<T> pageFromJPA;
-    int navigatePages;
+    Integer navigatePages;
 
-    int totalPages;
+    Integer totalPages;
 
-    int number;
+    Integer number;
 
-    long totalElements;
+    Long totalElements;
 
-    int size;
+    Integer size;
 
-    int numberOfElements;
+    Integer numberOfElements;
 
     List<T> content;
 
@@ -32,54 +36,49 @@ public class Page4Navigator<T> {
 
     boolean isHasPrevious;
 
-    int[] navigatepageNums;
+    Integer[] navigatepageNums;
 
-    public Page4Navigator() {
-        //这个空的分页是为了 Redis 从 json格式转换为 Page4Navigator 对象而专门提供的
-    }
-
-    public Page4Navigator(Page<T> pageFromJPA,int navigatePages) {
+    public Page4Navigator(Page<T> pageFromJPA, int navigatePages) {
         this.pageFromJPA = pageFromJPA;
         this.navigatePages = navigatePages;
 
-        totalPages = pageFromJPA.getTotalPages();
+        totalPages = (int) pageFromJPA.getPages();
 
-        number  = pageFromJPA.getNumber() ;
+        number = (int) pageFromJPA.getCurrent();
 
-        totalElements = pageFromJPA.getTotalElements();
+        totalElements = pageFromJPA.getTotal();
 
-        size = pageFromJPA.getSize();
+        size = (int) pageFromJPA.getSize();
 
-        numberOfElements = pageFromJPA.getNumberOfElements();
+        //numberOfElements = pageFromJPA.getNumberOfElements();
 
-        content = pageFromJPA.getContent();
+        content = pageFromJPA.getRecords();
 
-        isHasContent = pageFromJPA.hasContent();
+        //isHasContent = pageFromJPA.hasContent();
 
-        first = pageFromJPA.isFirst();
-
-        last = pageFromJPA.isLast();
+        //first = pageFromJPA.isFirst();
+        //
+        //last = pageFromJPA.isLast();
 
         isHasNext = pageFromJPA.hasNext();
 
         isHasPrevious  = pageFromJPA.hasPrevious();
-
         calcNavigatepageNums();
 
     }
 
     private void calcNavigatepageNums() {
-        int navigatepageNums[];
+        Integer navigatepageNums[];
         int totalPages = getTotalPages();
         int num = getNumber();
         //当总页数小于或等于导航页码数时
         if (totalPages <= navigatePages) {
-            navigatepageNums = new int[totalPages];
+            navigatepageNums = new Integer[totalPages];
             for (int i = 0; i < totalPages; i++) {
                 navigatepageNums[i] = i + 1;
             }
         } else { //当总页数大于导航页码数时
-            navigatepageNums = new int[navigatePages];
+            navigatepageNums = new Integer[navigatePages];
             int startNum = num - navigatePages / 2;
             int endNum = num + navigatePages / 2;
 
@@ -102,110 +101,6 @@ public class Page4Navigator<T> {
                 }
             }
         }
-        this.navigatepageNums = navigatepageNums;
-    }
-
-    public int getNavigatePages() {
-        return navigatePages;
-    }
-
-    public void setNavigatePages(int navigatePages) {
-        this.navigatePages = navigatePages;
-    }
-
-    public int getTotalPages() {
-        return totalPages;
-    }
-
-    public void setTotalPages(int totalPages) {
-        this.totalPages = totalPages;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
-    public long getTotalElements() {
-        return totalElements;
-    }
-
-    public void setTotalElements(long totalElements) {
-        this.totalElements = totalElements;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public int getNumberOfElements() {
-        return numberOfElements;
-    }
-
-    public void setNumberOfElements(int numberOfElements) {
-        this.numberOfElements = numberOfElements;
-    }
-
-    public List<T> getContent() {
-        return content;
-    }
-
-    public void setContent(List<T> content) {
-        this.content = content;
-    }
-
-    public boolean isHasContent() {
-        return isHasContent;
-    }
-
-    public void setHasContent(boolean isHasContent) {
-        this.isHasContent = isHasContent;
-    }
-
-    public boolean isFirst() {
-        return first;
-    }
-
-    public void setFirst(boolean first) {
-        this.first = first;
-    }
-
-    public boolean isLast() {
-        return last;
-    }
-
-    public void setLast(boolean last) {
-        this.last = last;
-    }
-
-    public boolean isHasNext() {
-        return isHasNext;
-    }
-
-    public void setHasNext(boolean isHasNext) {
-        this.isHasNext = isHasNext;
-    }
-
-    public boolean isHasPrevious() {
-        return isHasPrevious;
-    }
-
-    public void setHasPrevious(boolean isHasPrevious) {
-        this.isHasPrevious = isHasPrevious;
-    }
-
-    public int[] getNavigatepageNums() {
-        return navigatepageNums;
-    }
-
-    public void setNavigatepageNums(int[] navigatepageNums) {
         this.navigatepageNums = navigatepageNums;
     }
 

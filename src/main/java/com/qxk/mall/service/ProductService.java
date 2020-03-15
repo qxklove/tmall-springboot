@@ -1,12 +1,13 @@
-
-
 package com.qxk.mall.service;
 
-import com.qxk.mall.dao.ProductDAO;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qxk.mall.es.ProductESDAO;
+import com.qxk.mall.mapper.ProductMapper;
 import com.qxk.mall.pojo.Category;
 import com.qxk.mall.pojo.Product;
 import com.qxk.mall.util.Page4Navigator;
+import com.qxk.mall.util.PageUtil;
 import com.qxk.mall.util.SpringContextUtil;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.functionscore.FunctionScoreQueryBuilder;
@@ -22,14 +23,14 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @CacheConfig(cacheNames="products")
-public class ProductService  {
+public class ProductService extends ServiceImpl<ProductMapper, Product> {
 
-	@Autowired ProductDAO productDAO;
 	@Autowired
 	ProductESDAO productESDAO;
 	@Autowired ProductImageService productImageService;
@@ -39,34 +40,36 @@ public class ProductService  {
 
 	@CacheEvict(allEntries=true)
 	public void add(Product bean) {
-		productDAO.save(bean);
+		this.save(bean);
 		productESDAO.save(bean);
 	}
 
 	@CacheEvict(allEntries=true)
 	public void delete(int id) {
-		productDAO.delete(id);
+		this.removeById(id);
 		productESDAO.delete(id);
 	}
 
 	@Cacheable(key="'products-one-'+ #p0")
 	public Product get(int id) {
-		return productDAO.findOne(id);
+		Product product = this.getById(id);
+		product.setCategory(categoryService.getById(product.getCid()));
+		return product;
 	}
 
 	@CacheEvict(allEntries=true)
 	public void update(Product bean) {
-		productDAO.save(bean);
+		this.updateById(bean);
 		productESDAO.save(bean);
 	}
 
 	@Cacheable(key="'products-cid-'+#p0+'-page-'+#p1 + '-' + #p2 ")
 	public Page4Navigator<Product> list(int cid, int start, int size,int navigatePages) {
-    	Category category = categoryService.get(cid);
-    	Sort sort = new Sort(Sort.Direction.DESC, "id");
-    	Pageable pageable = new PageRequest(start, size, sort);
-    	Page<Product> pageFromJPA =productDAO.findByCategory(category,pageable);
-    	return new Page4Navigator<>(pageFromJPA,navigatePages);
+		PageUtil<Product> p = new PageUtil<>(start, size);
+		com.baomidou.mybatisplus.extension.plugins.pagination.Page<Product> pageList = this.page(p, new QueryWrapper<Product>()
+				.eq("cid", cid)
+				.orderByDesc("id"));
+		return new Page4Navigator<>(pageList, navigatePages);
 	}
 
 	public void fill(List<Category> categorys) {
@@ -75,10 +78,11 @@ public class ProductService  {
 		}
 	}
 
-
 	@Cacheable(key="'products-cid-'+ #p0.id")
 	public List<Product> listByCategory(Category category){
-		return productDAO.findByCategoryOrderById(category);
+		return this.list(new QueryWrapper<Product>()
+				.eq("cid", category.getId())
+				.orderByDesc("id"));
 	}
 
 	public void fill(Category category) {
@@ -104,7 +108,6 @@ public class ProductService  {
         }
 	}
 
-
 	public void setSaleAndReviewNumber(Product product) {
         int saleCount = orderItemService.getSaleCount(product);
         product.setSaleCount(saleCount);
@@ -115,10 +118,10 @@ public class ProductService  {
 
 	}
 
-
 	public void setSaleAndReviewNumber(List<Product> products) {
-		for (Product product : products)
+		for (Product product : products) {
 			setSaleAndReviewNumber(product);
+		}
 	}
 
 	public List<Product> search(String keyword, int start, int size) {
@@ -142,7 +145,7 @@ public class ProductService  {
 		Pageable pageable = new PageRequest(0, 5);
 		Page<Product> page =productESDAO.findAll(pageable);
 		if(page.getContent().isEmpty()) {
-			List<Product> products= productDAO.findAll();
+			List<Product> products = this.list();
 			for (Product product : products) {
 				productESDAO.save(product);
 			}

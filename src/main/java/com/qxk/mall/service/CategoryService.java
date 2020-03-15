@@ -1,72 +1,62 @@
-
-
 package com.qxk.mall.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
-
-import com.qxk.mall.dao.CategoryDAO;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.qxk.mall.mapper.CategoryMapper;
 import com.qxk.mall.pojo.Category;
 import com.qxk.mall.pojo.Product;
 import com.qxk.mall.util.Page4Navigator;
+import com.qxk.mall.util.PageUtil;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @CacheConfig(cacheNames="categories")
-public class CategoryService {
-	@Autowired CategoryDAO categoryDAO;
+public class CategoryService extends ServiceImpl<CategoryMapper, Category> {
 
 	@CacheEvict(allEntries=true)
 //	@CachePut(key="'category-one-'+ #p0")
 	public void add(Category bean) {
-		categoryDAO.save(bean);
+        this.save(bean);
 	}
 
 	@CacheEvict(allEntries=true)
 //	@CacheEvict(key="'category-one-'+ #p0")
 	public void delete(int id) {
-		categoryDAO.delete(id);
+        this.removeById(id);
 	}
-
 
 	@Cacheable(key="'categories-one-'+ #p0")
 	public Category get(int id) {
-		Category c= categoryDAO.findOne(id);
+        Category c = this.getById(id);
 		return c;
 	}
 
 	@CacheEvict(allEntries=true)
 //	@CachePut(key="'category-one-'+ #p0")
 	public void update(Category bean) {
-		categoryDAO.save(bean);
+        this.updateById(bean);
 	}
 
 	@Cacheable(key="'categories-page-'+#p0+ '-' + #p1")
 	public Page4Navigator<Category> list(int start, int size, int navigatePages) {
-    	Sort sort = new Sort(Sort.Direction.DESC, "id");
-		Pageable pageable = new PageRequest(start, size,sort);
-		Page pageFromJPA =categoryDAO.findAll(pageable);
+        PageUtil<Category> p = new PageUtil<>(start, size);
+        Page<Category> pageList = this.page(p, new QueryWrapper<Category>().orderByDesc("id"));
+        return new Page4Navigator<>(pageList, navigatePages);
+    }
 
-		return new Page4Navigator<>(pageFromJPA,navigatePages);
-	}
+    @Override
+    @Cacheable(key = "'categories-all'")
+    public List<Category> list() {
+        return this.list(new QueryWrapper<Category>().orderByDesc("id"));
+    }
 
-	@Cacheable(key="'categories-all'")
-	public List<Category> list() {
-    	Sort sort = new Sort(Sort.Direction.DESC, "id");
-		return categoryDAO.findAll(sort);
-	}
-
-	//这个方法的用处是删除Product对象上的 分类。 为什么要删除呢？ 因为在对分类做序列还转换为 json 的时候，会遍历里面的 products, 然后遍历出来的产品上，又会有分类，接着就开始子子孙孙无穷溃矣地遍历了，就搞死个人了
-	//而在这里去掉，就没事了。 只要在前端业务上，没有通过产品获取分类的业务，去掉也没有关系
-
+    //这个方法的用处是删除Product对象上的分类。 为什么要删除呢？ 因为在对分类做序列化转换为 json 的时候，会遍历里面的 products, 然后遍历出来的产品上，又会有分类，接着就开始子子孙孙无穷溃矣地遍历了，而在这里去掉，就没事了。 只要在前端业务上，没有通过产品获取分类的业务，去掉也没有关系
 	public void removeCategoryFromProduct(List<Category> cs) {
 		for (Category category : cs) {
 			removeCategoryFromProduct(category);

@@ -25,16 +25,16 @@ INSERT INTO category VALUES (82,'马桶');
 INSERT INTO category VALUES (83,'平板电视');
 CREATE TABLE order_ (
   id int(11) NOT NULL AUTO_INCREMENT,
-  orderCode varchar(255) DEFAULT NULL,
+  order_code varchar(255) DEFAULT NULL,
   address varchar(255) DEFAULT NULL,
   post varchar(255) DEFAULT NULL,
   receiver varchar(255) DEFAULT NULL,
   mobile varchar(255) DEFAULT NULL,
-  userMessage varchar(255) DEFAULT NULL,
-  createDate datetime DEFAULT NULL,
-  payDate datetime DEFAULT NULL,
-  deliveryDate datetime DEFAULT NULL,
-  confirmDate datetime DEFAULT NULL,
+  user_message varchar(255) DEFAULT NULL,
+  create_date datetime DEFAULT NULL,
+  pay_date datetime DEFAULT NULL,
+  delivery_date datetime DEFAULT NULL,
+  confirm_date datetime DEFAULT NULL,
   uid int(11) DEFAULT NULL,
   status varchar(255) DEFAULT NULL,
   PRIMARY KEY (id),
@@ -53,12 +53,12 @@ CREATE TABLE order_item (
 CREATE TABLE product (
   id int(11) NOT NULL AUTO_INCREMENT,
   name varchar(255) DEFAULT NULL,
-  subTitle varchar(255) DEFAULT NULL,
-  originalPrice float DEFAULT NULL,
-  promotePrice float DEFAULT NULL,
+  sub_title varchar(255) DEFAULT NULL,
+  original_price float DEFAULT NULL,
+  promote_price float DEFAULT NULL,
   stock int(11) DEFAULT NULL,
   cid int(11) DEFAULT NULL,
-  createDate datetime DEFAULT NULL,
+  create_date datetime DEFAULT NULL,
   PRIMARY KEY (id),
   KEY fk_product_category (cid)
 ) ENGINE=InnoDB AUTO_INCREMENT=969 DEFAULT CHARSET=utf8mb4;
@@ -14696,7 +14696,7 @@ CREATE TABLE review (
   content varchar(4000) DEFAULT NULL,
   uid int(11) DEFAULT NULL,
   pid int(11) DEFAULT NULL,
-  createDate datetime DEFAULT NULL,
+  create_date datetime DEFAULT NULL,
   PRIMARY KEY (id),
   KEY fk_review_product (pid),
   KEY fk_review_user (uid)
