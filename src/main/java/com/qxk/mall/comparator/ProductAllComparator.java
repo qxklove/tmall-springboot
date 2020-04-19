@@ -4,7 +4,7 @@ package com.qxk.mall.comparator;
 
 import java.util.Comparator;
 
-import com.qxk.mall.pojo.Product;
+import com.qxk.mall.model.Product;
 
 
 

@@ -19,8 +19,7 @@ public class PageUtil<T> extends Page<T> {
         if (page <= 0) {
             page = DEFAULT_PAGE;
         }
-        pageSize = (pageSize > 0 && pageSize <= DEFAULT_MAX_PAGE_SIZE) ? pageSize
-                : DEFAULT_PAGE_SIZE;
+        pageSize = (pageSize > 0 && pageSize <= DEFAULT_MAX_PAGE_SIZE) ? pageSize : DEFAULT_PAGE_SIZE;
         this.setCurrent(page);
         this.setSize(pageSize);
     }

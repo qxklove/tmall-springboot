@@ -14,9 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.qxk.mall.pojo.Category;
-import com.qxk.mall.pojo.OrderItem;
-import com.qxk.mall.pojo.User;
+import com.qxk.mall.model.Category;
+import com.qxk.mall.model.OrderItem;
+import com.qxk.mall.model.User;
 
 public class OtherInterceptor implements HandlerInterceptor {
 	@Autowired

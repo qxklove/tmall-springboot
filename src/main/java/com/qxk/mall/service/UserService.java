@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qxk.mall.mapper.UserMapper;
-import com.qxk.mall.pojo.User;
+import com.qxk.mall.model.User;
 import com.qxk.mall.util.Page4Navigator;
 import com.qxk.mall.util.PageUtil;
 import com.qxk.mall.util.SpringContextUtil;

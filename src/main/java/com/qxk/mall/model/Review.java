@@ -1,4 +1,4 @@
-package com.qxk.mall.pojo;
+package com.qxk.mall.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -7,22 +7,27 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import java.util.List;
 
-@TableName("category")
+import java.util.Date;
+
+@TableName("review")
 @Getter
 @Setter
 @ToString
-public class Category {
+public class Review {
     @TableId(type = IdType.AUTO)
     private Integer id;
-    private String name;
+    private Integer uid;
+    private Integer pid;
 
     @TableField(exist = false)
-    List<Product> products;
+    private User user;
 
     @TableField(exist = false)
-    List<List<Product>> productsByRow;
+    private Product product;
+
+    private String content;
+    private Date createDate;
 }
 
 

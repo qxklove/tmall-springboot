@@ -1,10 +1,13 @@
 
 
-package com.qxk.mall.web;
+package com.qxk.mall.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+/**
+ * @author laijianzhen
+ */
 @Controller
 public class AdminPageController {
 	@GetMapping(value="/admin")

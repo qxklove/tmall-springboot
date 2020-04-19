@@ -1,8 +1,8 @@
 
 
-package com.qxk.mall.web;
+package com.qxk.mall.controller;
 
-import com.qxk.mall.pojo.Category;
+import com.qxk.mall.model.Category;
 import com.qxk.mall.service.CategoryService;
 import com.qxk.mall.util.ImageUtil;
 import com.qxk.mall.util.Page4Navigator;
@@ -16,15 +16,18 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * @author laijianzhen
+ */
 @RestController
 public class CategoryController {
 	@Autowired
 	CategoryService categoryService;
 
 	@GetMapping("/categories")
-	public Page4Navigator<Category> list(@RequestParam(value = "start", defaultValue = "1") int start, @RequestParam(value = "size", defaultValue = "5") int size) throws Exception {
-		start = start<0?0:start;
-		Page4Navigator<Category> page =categoryService.list(start, size, 5);  //5表示导航分页最多有5个，像 [1,2,3,4,5] 这样
+	public Page4Navigator<Category> list(@RequestParam(value = "start", defaultValue = "1") int start, @RequestParam(value = "size", defaultValue = "5") int size){
+		//5表示导航分页最多有5个，像 [1,2,3,4,5] 这样
+		Page4Navigator<Category> page =categoryService.list(start, size, 5);
 		return page;
 	}
 
@@ -47,7 +50,7 @@ public class CategoryController {
 	}
 
 	@DeleteMapping("/categories/{id}")
-	public String delete(@PathVariable("id") int id, HttpServletRequest request)  throws Exception {
+	public String delete(@PathVariable("id") int id, HttpServletRequest request){
 		categoryService.delete(id);
 		File  imageFolder= new File(request.getServletContext().getRealPath("img/category"));
 		File file = new File(imageFolder,id+".jpg");
@@ -56,7 +59,7 @@ public class CategoryController {
 	}
 
 	@GetMapping("/categories/{id}")
-	public Category get(@PathVariable("id") int id) throws Exception {
+	public Category get(@PathVariable("id") int id){
 		Category bean=categoryService.get(id);
 		return bean;
 	}

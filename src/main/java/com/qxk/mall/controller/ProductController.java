@@ -1,8 +1,8 @@
 
 
-package com.qxk.mall.web;
+package com.qxk.mall.controller;
 
-import com.qxk.mall.pojo.Product;
+import com.qxk.mall.model.Product;
 import com.qxk.mall.service.CategoryService;
 import com.qxk.mall.service.ProductImageService;
 import com.qxk.mall.service.ProductService;

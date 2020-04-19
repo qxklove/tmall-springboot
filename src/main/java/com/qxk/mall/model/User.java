@@ -1,4 +1,4 @@
-package com.qxk.mall.pojo;
+package com.qxk.mall.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;

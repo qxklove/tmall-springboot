@@ -1,9 +1,9 @@
 
 
-package com.qxk.mall.web;
+package com.qxk.mall.controller;
 
 import com.qxk.mall.comparator.*;
-import com.qxk.mall.pojo.*;
+import com.qxk.mall.model.*;
 import com.qxk.mall.service.*;
 import com.qxk.mall.util.Result;
 import org.apache.commons.lang.math.RandomUtils;

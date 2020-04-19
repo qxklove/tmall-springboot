@@ -1347,7 +1347,6 @@ INSERT INTO property VALUES (254,60,'产品名称');
 INSERT INTO property VALUES (255,60,'人体固定方式');
 INSERT INTO property VALUES (256,60,'安全座椅品牌');
 INSERT INTO property VALUES (257,60,'适用年龄');
-INSERT INTO property VALUES (259,83,'a222');
 CREATE TABLE property_value (
   id int(11) NOT NULL AUTO_INCREMENT,
   pid int(11) DEFAULT NULL,

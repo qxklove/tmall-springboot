@@ -1,28 +1,28 @@
-package com.qxk.mall.pojo;
+package com.qxk.mall.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import java.util.List;
 
-@TableName("product_image")
+@TableName("category")
 @Getter
 @Setter
 @ToString
-public class ProductImage {
+public class Category {
     @TableId(type = IdType.AUTO)
     private Integer id;
-    private Integer pid;
+    private String name;
 
-    @JsonBackReference
     @TableField(exist = false)
-	private Product product;
+    List<Product> products;
 
-    private String type;
+    @TableField(exist = false)
+    List<List<Product>> productsByRow;
 }
 
 

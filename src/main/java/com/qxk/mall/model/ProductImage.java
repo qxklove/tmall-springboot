@@ -1,33 +1,28 @@
-package com.qxk.mall.pojo;
+package com.qxk.mall.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.Date;
-
-@TableName("review")
+@TableName("product_image")
 @Getter
 @Setter
 @ToString
-public class Review {
+public class ProductImage {
     @TableId(type = IdType.AUTO)
     private Integer id;
-    private Integer uid;
     private Integer pid;
 
+    @JsonBackReference
     @TableField(exist = false)
-    private User user;
+	private Product product;
 
-    @TableField(exist = false)
-    private Product product;
-
-    private String content;
-    private Date createDate;
+    private String type;
 }
 
 

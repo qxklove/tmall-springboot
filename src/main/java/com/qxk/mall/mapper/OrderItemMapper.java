@@ -1,7 +1,7 @@
 package com.qxk.mall.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.qxk.mall.pojo.OrderItem;
+import com.qxk.mall.model.OrderItem;
 
 /**
  * @author laijianzhen

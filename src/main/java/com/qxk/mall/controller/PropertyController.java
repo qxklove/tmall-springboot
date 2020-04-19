@@ -1,8 +1,8 @@
 
 
-package com.qxk.mall.web;
+package com.qxk.mall.controller;
 
-import com.qxk.mall.pojo.Property;
+import com.qxk.mall.model.Property;
 import com.qxk.mall.service.PropertyService;
 import com.qxk.mall.util.Page4Navigator;
 import org.springframework.beans.factory.annotation.Autowired;

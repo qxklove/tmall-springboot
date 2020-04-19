@@ -14,9 +14,12 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.qxk.mall.pojo.User;
+import com.qxk.mall.model.User;
 
-public class JPARealm extends AuthorizingRealm {
+/**
+ * @author laijianzhen
+ */
+public class UserRealm extends AuthorizingRealm {
 
 	@Autowired
 	private UserService userService;

@@ -1,6 +1,6 @@
 
 
-package com.qxk.mall.web;
+package com.qxk.mall.controller;
 import java.util.List;
 
 import com.qxk.mall.service.ProductService;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.qxk.mall.pojo.Product;
-import com.qxk.mall.pojo.PropertyValue;
+import com.qxk.mall.model.Product;
+import com.qxk.mall.model.PropertyValue;
 
 @RestController
 public class PropertyValueController {

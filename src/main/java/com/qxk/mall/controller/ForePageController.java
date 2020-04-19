@@ -1,6 +1,6 @@
 
 
-package com.qxk.mall.web;
+package com.qxk.mall.controller;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -76,8 +76,9 @@ public class ForePageController {
 	@GetMapping("/forelogout")
 	public String logout( ) {
 		Subject subject = SecurityUtils.getSubject();
-		if(subject.isAuthenticated())
-			subject.logout();
+		if(subject.isAuthenticated()) {
+            subject.logout();
+        }
 		return "redirect:home";
 	}
 

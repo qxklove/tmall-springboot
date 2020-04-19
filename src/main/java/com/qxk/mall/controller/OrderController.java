@@ -1,8 +1,8 @@
 
 
-package com.qxk.mall.web;
+package com.qxk.mall.controller;
 
-import com.qxk.mall.pojo.Order;
+import com.qxk.mall.model.Order;
 import com.qxk.mall.service.OrderItemService;
 import com.qxk.mall.service.OrderService;
 import com.qxk.mall.util.Page4Navigator;

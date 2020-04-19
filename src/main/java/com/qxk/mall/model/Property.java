@@ -1,4 +1,4 @@
-package com.qxk.mall.pojo;
+package com.qxk.mall.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -8,26 +8,18 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@TableName("order_item")
+@TableName("property")
 @Getter
 @Setter
 @ToString
-public class OrderItem {
+public class Property {
     @TableId(type = IdType.AUTO)
     private Integer id;
-    private Integer pid;
-    private Integer oid;
-    private Integer uid;
-    private Integer number;
+    private String name;
+    private Integer cid;
 
     @TableField(exist = false)
-	private Product product;
-
-    @TableField(exist = false)
-	private Order order;
-
-    @TableField(exist = false)
-	private User user;
+	private Category category;
 }
 
 
